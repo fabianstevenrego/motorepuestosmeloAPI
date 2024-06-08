@@ -1,2 +1,0 @@
-# motorepuestosmeloAPI
-Backend proyecto motorepuestosmelo
