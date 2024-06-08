@@ -1,5 +1,8 @@
 package com.motorepuestos.melos.data.entity;
 
-public class entidad1 {
+import jakarta.persistence.Entity;
 
+@Entity
+public class entidad1 {
+int id23;
 }
