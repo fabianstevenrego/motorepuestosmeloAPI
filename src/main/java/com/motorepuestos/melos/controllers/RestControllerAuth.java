@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collections;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/auth/")
@@ -41,20 +42,54 @@ public class RestControllerAuth {
         this.usuariosRepository = usuariosRepository;
         this.jwtGenerador = jwtGenerador;
     }
-    //Método para poder registrar usuarios con role "user"
+
     @PostMapping("register")
     public ResponseEntity<String> registrar(@RequestBody DtoRegistro dtoRegistro) {
-        if (usuariosRepository.existsByUsername(dtoRegistro.getUsername())) {
-            return new ResponseEntity<>("el usuario ya existe, intenta con otro", HttpStatus.BAD_REQUEST);
+        // Verificar si el usuario ya existe por su nombre de usuario o correo electrónico
+        if (usuariosRepository.existsByUsername(dtoRegistro.getUsername()))  {
+            return new ResponseEntity<>("El usuario ya existe, intenta con otro nombre de usuario o correo electrónico", HttpStatus.BAD_REQUEST);
         }
-        Usuarios usuarios = new Usuarios();
-        usuarios.setUsername(dtoRegistro.getUsername());
-        usuarios.setPassword(passwordEncoder.encode(dtoRegistro.getPassword()));
-        Roles roles = rolesRepository.findByName("USER").get();
-        usuarios.setRoles(Collections.singletonList(roles));
-        usuariosRepository.save(usuarios);
+
+        // Crear un nuevo usuario con los datos proporcionados
+        Usuarios usuario = new Usuarios();
+        usuario.setUsername(dtoRegistro.getUsername());
+        usuario.setEmail(dtoRegistro.getEmail());
+        usuario.setTelefono(dtoRegistro.getTelefono());
+        usuario.setPassword(passwordEncoder.encode(dtoRegistro.getPassword()));
+
+        // Guardar el usuario en la base de datos
+        usuariosRepository.save(usuario);
+
+        // Asignar roles según corresponde
+
+        // Retornar una respuesta exitosa
         return new ResponseEntity<>("Registro de usuario exitoso", HttpStatus.OK);
     }
+
+
+    private void asignarRolesEmpleado(Usuarios usuario, DtoRegistro dtoRegistro) {
+        // Obtener el rol AUXILIAR de la base de datos
+        Optional<Roles> optionalRolAuxiliar = rolesRepository.findByName("AUXILIAR");
+
+        if (((Optional<?>) optionalRolAuxiliar).isPresent()) {
+            // Asignar el rol AUXILIAR al usuario
+            Roles rolAuxiliar = optionalRolAuxiliar.get();
+            usuario.getRoles().add(rolAuxiliar);
+            usuariosRepository.save(usuario);
+        } else {
+            // Manejar el caso en que el rol AUXILIAR no esté presente en la base de datos
+            throw new RuntimeException("No se pudo encontrar el rol AUXILIAR en la base de datos");
+        }
+    }
+
+
+    private void asignarRolesUsuario(Usuarios usuario, DtoRegistro dtoRegistro) {
+        // Lógica para asignar roles a otros tipos de usuarios (por ejemplo, CLIENTE)
+        // rolesRepository.saveAll(rolesAsignados); // rolesAsignados es una lista de roles que puedes definir
+    }
+
+
+
 
     //Método para poder guardar usuarios de tipo ADMIN
     @PostMapping("registerAdm")

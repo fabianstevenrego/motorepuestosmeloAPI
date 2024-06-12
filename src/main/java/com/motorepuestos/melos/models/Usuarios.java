@@ -20,16 +20,16 @@ public class Usuarios {
     @Column(name = "id")
     private int idUsuario;
 
-    @Column(name = "nombre", nullable = false, length = 50)
+    @Column(name = "nombre")
     private String username;
 
-    @Column(name = "contrasena", nullable = false, length = 50)
+    @Column(name = "contrasena")
     private String password;
 
-    @Column(name = "correoelectronico", nullable = false, length = 50)
+    @Column(name = "correoelectronico")
     private String email;
 
-    @Column(name = "telefono", nullable = false, length = 10)
+    @Column(name = "telefono")
     private String telefono;
 
     //Usamos fetchType en EAGER para que cada vez que se acceda o se extraiga un usuario de la BD, este se traiga todos sus roles
