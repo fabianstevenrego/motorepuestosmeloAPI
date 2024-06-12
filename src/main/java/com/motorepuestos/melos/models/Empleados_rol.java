@@ -1,3 +1,5 @@
+package com.motorepuestos.melos.models;
+
 import com.motorepuestos.melos.models.*;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.*;
