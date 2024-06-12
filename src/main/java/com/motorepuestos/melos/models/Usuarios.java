@@ -1,14 +1,15 @@
 package com.motorepuestos.melos.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.*;
 
 @Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -36,7 +37,19 @@ public class Usuarios {
     /*Con JoinTable estaremos creando una tabla que unirá la tabla de usuario y role, con lo cual tendremos un total de 3 tablas
     relacionadas en la tabla "usuarios_roles", a través de sus columnas usuario_id que apuntara al ID de la tabla usuario
     y role_id que apuntara al Id de la tabla role */
-    @JoinTable(name = "usuarios_roles", joinColumns = @JoinColumn(name = "usuario_id", referencedColumnName = "id_usuario")
+    @JoinTable(name = "usuarios_roles", joinColumns = @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     ,inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id_role"))
+
     private List<Roles> roles = new ArrayList<>();
+
+    // Método para obtener la lista de roles
+    /*public List<Roles> getRoles() {
+        return roles;
+    }*/
+
+    // Método para establecer la lista de roles
+  /*  public void setRoles(List<Roles> roles) {
+        this.roles = roles;
+    }*/
+
 }

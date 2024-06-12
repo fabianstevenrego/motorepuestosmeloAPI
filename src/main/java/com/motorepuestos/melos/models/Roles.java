@@ -1,11 +1,13 @@
 package com.motorepuestos.melos.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
+import java.util.Set;
 
 @Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -18,4 +20,5 @@ public class Roles {
 
     @Column(name = "role_nombre", nullable = false, length = 20)
     private String name;
+
 }
