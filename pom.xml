@@ -8,7 +8,7 @@
         <version>3.0.6</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>cl.javadevs</groupId>
+    <groupId>com.motorepuestos</groupId>
     <artifactId>Spring-Security-JWT</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Spring-Security-JWT</name>
@@ -31,8 +31,8 @@
         </dependency>
 
         <dependency>
-            <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
         <dependency>
