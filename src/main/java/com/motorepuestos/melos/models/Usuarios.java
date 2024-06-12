@@ -12,14 +12,25 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "usuario")
+@Table(name = "usuarios")
 public class Usuarios {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_usuario")
-    private Long idUsuario;
+    @Column(name = "id")
+    private int idUsuario;
+
+    @Column(name = "nombre", nullable = false, length = 50)
     private String username;
+
+    @Column(name = "contrasena", nullable = false, length = 50)
     private String password;
+
+    @Column(name = "correoelectronico", nullable = false, length = 50)
+    private String email;
+
+    @Column(name = "telefono", nullable = false, length = 10)
+    private String telefono;
+
     //Usamos fetchType en EAGER para que cada vez que se acceda o se extraiga un usuario de la BD, este se traiga todos sus roles
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     /*Con JoinTable estaremos creando una tabla que unirá la tabla de usuario y role, con lo cual tendremos un total de 3 tablas
