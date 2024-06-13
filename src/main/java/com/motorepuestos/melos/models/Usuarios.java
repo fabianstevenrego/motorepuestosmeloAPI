@@ -21,16 +21,17 @@ public class Usuarios {
     private int idUsuario;
 
     @Column(name = "nombre")
-    private String username;
+    private String nombre;
 
     @Column(name = "contrasena")
     private String password;
 
     @Column(name = "correoelectronico")
-    private String email;
+    private String username;
 
     @Column(name = "telefono")
     private String telefono;
+
 
     //Usamos fetchType en EAGER para que cada vez que se acceda o se extraiga un usuario de la BD, este se traiga todos sus roles
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
