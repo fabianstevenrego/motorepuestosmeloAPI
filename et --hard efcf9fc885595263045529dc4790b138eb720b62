@@ -1,0 +1,73 @@
+[33mcommit efcf9fc885595263045529dc4790b138eb720b62[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: fabianstevenrego <fabianstevenrego@udps.edu.co>
+Date:   Mon Jun 10 21:37:40 2024 -0500
+
+    primer commit en el servidor de heroku se cargan los servicios de  producto, pedido, categoria
+
+[33mcommit 3b93993208d1b98972eaa9d108d887ea423a80df[m
+Merge: 99de3a3 f465f85
+Author: Juanda-q <juandavidqume@ufps.edu.co>
+Date:   Sat Jun 8 19:00:11 2024 -0500
+
+    Merge remote-tracking branch 'origin/main'
+
+[33mcommit 99de3a3569c957a06cdbf54578c519f8424daa52[m
+Author: Juanda-q <juandavidqume@ufps.edu.co>
+Date:   Sat Jun 8 18:59:53 2024 -0500
+
+    Como tan muchachos
+
+[33mcommit f465f854941e71dc0a29cef6b9a5b72eccd0f11f[m
+Merge: 5d00a75 87020ad
+Author: Ramiro Andres Jaimes Contreras <ramiro.jaimes.1005@gmail.com>
+Date:   Sat Jun 8 18:53:41 2024 -0500
+
+    Merge remote-tracking branch 'origin/main'
+
+[33mcommit 5d00a75c4543b52aee6dda871fcdef38736d5bb5[m
+Author: Ramiro Andres Jaimes Contreras <ramiro.jaimes.1005@gmail.com>
+Date:   Sat Jun 8 18:53:07 2024 -0500
+
+    todos son unos enfermitos mentales
+
+[33mcommit 87020ad8a91b0e6a2b48acd0d1cdd9846cde41d5[m
+Author: jairo-sierra2117 <jairoenriquesb@ufps.edu.co>
+Date:   Sat Jun 8 18:51:40 2024 -0500
+
+    test commit 2 borre 1 linea
+
+[33mcommit 14206a2dd0f6d032eed220b1aeda400b436d5165[m
+Author: jairo-sierra2117 <jairoenriquesb@ufps.edu.co>
+Date:   Sat Jun 8 18:47:06 2024 -0500
+
+    teste de git desde intellij
+
+[33mcommit bda88a12f1331de6ce82fc5dff6876f0adf09ba1[m
+Author: jairo-sierra2117 <jairoenriquesb@ufps.edu.co>
+Date:   Sat Jun 8 18:17:44 2024 -0500
+
+    las clases de los distintos paquetes son nombres de ejemplo, se deben modificar sus nombres.
+
+[33mcommit 43198a22fb84bd77c53c6217c7d85fcf9b1e3a0c[m
+Author: jairo-sierra2117 <jairoenriquesb@ufps.edu.co>
+Date:   Sat Jun 8 18:14:08 2024 -0500
+
+    test
+
+[33mcommit 9a4ba2e318dae4068c2e690a33639260de83c88c[m
+Author: jairo-sierra2117 <jairoenriquesb@ufps.edu.co>
+Date:   Sat Jun 8 18:13:20 2024 -0500
+
+    cls
+
+[33mcommit d635187ea59b11d0f96317491a0dc1ffc8761bb7[m
+Author: fabianstevenrego <fabianstevenrego@udps.edu.co>
+Date:   Sat Jun 8 17:44:30 2024 -0500
+
+    first commit
+
+[33mcommit 1802778bb8a34cc2b6ccd70fc45e923ee9b1328e[m
+Author: Fabian Reyes <101686249+fabianstevenrego@users.noreply.github.com>
+Date:   Sat Jun 8 16:11:43 2024 -0500
+
+    Initial commit
