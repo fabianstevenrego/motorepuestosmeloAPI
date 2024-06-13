@@ -49,6 +49,8 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http
+                .cors() // Habilita la configuración CORS en Spring Security
+                .and()
                 .csrf().disable()
                 .exceptionHandling() //Permitimos el manejo de excepciones
                 .authenticationEntryPoint(jwtAuthenticationEntryPoint) //Nos establece un punto de entrada personalizado de autenticación para el manejo de autenticaciones no autorizadas
