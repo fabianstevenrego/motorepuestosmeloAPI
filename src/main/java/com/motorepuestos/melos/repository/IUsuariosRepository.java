@@ -1,6 +1,6 @@
-package com.motorepuestos.melos.repositories;
+package com.motorepuestos.melos.repository;
 
-import com.motorepuestos.melos.models.Usuarios;
+import com.motorepuestos.melos.data.entity.Usuarios;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -59,7 +59,7 @@ public class SecurityConfig {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeHttpRequests() //Toda petición http debe ser autorizada
-                .requestMatchers("/api/**").permitAll()
+                .requestMatchers("/api/auth/**").permitAll()
                 //.requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/celular/crear").hasAuthority("ADMIN")
                 .requestMatchers(HttpMethod.GET,"/api/celular/listarId/**").hasAnyAuthority("ADMIN" , "USER")

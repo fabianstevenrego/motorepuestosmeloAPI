@@ -1,11 +1,10 @@
-package com.motorepuestos.melos.models;
+package com.motorepuestos.melos.data.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.*;
 
 @Data
 @Getter

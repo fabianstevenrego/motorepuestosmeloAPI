@@ -1,6 +1,6 @@
-package com.motorepuestos.melos.repositories;
+package com.motorepuestos.melos.repository;
 
-import com.motorepuestos.melos.models.Roles;
+import com.motorepuestos.melos.data.entity.Roles;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
