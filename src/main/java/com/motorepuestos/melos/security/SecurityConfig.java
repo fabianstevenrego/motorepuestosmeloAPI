@@ -62,7 +62,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/**").permitAll()
                 //.requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/celular/crear").hasAuthority("ADMIN")
-                .requestMatchers(HttpMethod.GET,"/api/celular/listarId/**").hasAnyAuthority("ADMIN" , "USER")
+                .requestMatchers(HttpMethod.GET,"/api/productos/**").permitAll()
                 .requestMatchers(HttpMethod.DELETE,"/api/celular/eliminar/**").hasAuthority("ADMIN")
                 .requestMatchers(HttpMethod.PUT, "/api/celular/actualizar").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
