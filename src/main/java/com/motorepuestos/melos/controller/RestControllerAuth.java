@@ -1,6 +1,6 @@
 package com.motorepuestos.melos.controller;
 
-import com.motorepuestos.melos.data.model.ProductoDTO;
+import com.motorepuestos.melos.data.model.*;
 import com.motorepuestos.melos.data.entity.Cliente;
 import com.motorepuestos.melos.data.entity.Empleado;
 import com.motorepuestos.melos.data.entity.Roles;
@@ -48,7 +48,7 @@ public class RestControllerAuth {
 
     @PostMapping("register")
     @Transactional
-    public ResponseEntity<String> registrar(@RequestBody ProductoDTO.DtoRegistro dtoRegistro) {
+    public ResponseEntity<String> registrar(@RequestBody DtoRegistro dtoRegistro) {
         // Verificar si el usuario ya existe por su nombre de usuario o correo electrónico
         if (usuariosRepository.existsByUsername(dtoRegistro.getUsername())) {
             return new ResponseEntity<>("El usuario ya existe, intenta con otro nombre de usuario o correo electrónico", HttpStatus.BAD_REQUEST);
@@ -102,7 +102,7 @@ public class RestControllerAuth {
 
     //Método para poder logear un usuario y obtener un token
     @PostMapping("login")
-    public ResponseEntity<?> login(@RequestBody ProductoDTO.DtoLogin dtoLogin) {
+    public ResponseEntity<?> login(@RequestBody DtoLogin dtoLogin) {
         try {
             Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                     dtoLogin.getUsername(), dtoLogin.getPassword()));
@@ -113,10 +113,10 @@ public class RestControllerAuth {
 
             // Obtener datos del usuario autenticado
             String userType = determineUserType(authentication);
-            List<ProductoDTO.RolDto> roles = determineUserRoles(authentication);
+            List<RolDto> roles = determineUserRoles(authentication);
 
             // Construir respuesta DTO
-            ProductoDTO.DtoAuthRespuesta authResponse = new ProductoDTO.DtoAuthRespuesta(token, userType, roles);
+            DtoAuthRespuesta authResponse = new DtoAuthRespuesta(token, userType, roles);
 
             return ResponseEntity.ok(authResponse);
         } catch (AuthenticationException e) {
@@ -142,7 +142,7 @@ public class RestControllerAuth {
         }
     }
 
-    private List<ProductoDTO.RolDto> determineUserRoles(Authentication authentication) {
+    private List<RolDto> determineUserRoles(Authentication authentication) {
         // Obtener el nombre de usuario autenticado desde el Authentication principal
         String username = authentication.getName();
 
@@ -151,9 +151,9 @@ public class RestControllerAuth {
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
         // Devolver los roles del objeto encontrado
-        List<ProductoDTO.RolDto> roles = new ArrayList<>();
+        List<RolDto> roles = new ArrayList<>();
         for (Roles rol : usuario.getRoles()) {
-            roles.add(new ProductoDTO.RolDto(rol.getIdRole(), rol.getName()));
+            roles.add(new RolDto(rol.getIdRole(), rol.getName()));
         }
 
         return roles;
