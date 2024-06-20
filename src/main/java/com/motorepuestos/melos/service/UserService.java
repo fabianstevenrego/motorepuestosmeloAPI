@@ -22,6 +22,11 @@ public class UserService {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    // Constantes para mensajes de éxito y error
+    private static final String SUCCESS_EMAIL_SENT = "Se ha enviado la nueva contraseña al correo electrónico proporcionado.";
+    private static final String ERROR_USER_NOT_FOUND = "No existe el usuario con el correo electrónico proporcionado.";
+
+
     /**
      * Reestablecer contraseña de cualquier usuario.
      *
@@ -54,7 +59,7 @@ public class UserService {
      * correo electronico.
      *
      * @param email email del usuario al que se le asignara la contraseña.
-     * @return boolean Refleja si la operacion tuvo exito.
+     *
      */
     public void emailContrasena(String email) {
 
@@ -71,7 +76,11 @@ public class UserService {
             throw new RuntimeException("Error al guardar el usuario");
         }
 
-        emailService.sendListEmail(email, "Contraseña de Recuperación", tempcontrasena);
+        String subject = "<p style=\"font-size: 28px; font-weight: bold;\">Contraseña de Recuperación </p>";
+        String mensaje = "<p style=\"font-size: 18px;\">Su nueva contraseña de recuperacion es:</p>" +
+                "<p style=\"font-size: 24px; font-weight: bold;\">" + tempcontrasena + "</p>";
+
+        emailService.sendListEmail(email, subject, mensaje);
     }
 
     /**
@@ -91,4 +100,10 @@ public class UserService {
 
         return sb.toString();
     }
+
+    // Método para obtener el mensaje de éxito al enviar el correo
+    public String getSuccessMessage() {
+        return SUCCESS_EMAIL_SENT;
+    }
+
 }
