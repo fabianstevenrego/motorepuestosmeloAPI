@@ -110,18 +110,42 @@ public class RestControllerAuth {
 
             // No hagas cast a Usuarios aquí, usa los métodos de authentication
             String token = jwtGenerador.generarToken(authentication);
+            Usuarios usuario = usuariosRepository.findByUsername(authentication.getName())
+                    .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
             // Obtener datos del usuario autenticado
             String userType = determineUserType(authentication);
             List<RolDto> roles = determineUserRoles(authentication);
 
-            // Construir respuesta DTO
-            DtoAuthRespuesta authResponse = new DtoAuthRespuesta(token, userType, roles);
+            String nombre = usuario.getNombre();
+            String correo = usuario.getUsername();
+            String telefono = usuario.getTelefono();
+            Integer cedula = usuario instanceof Empleado ? ((Empleado) usuario).getCedula() : null;
+
+            DtoAuthRespuesta authResponse = new DtoAuthRespuesta(token, userType, roles, nombre, correo,telefono, cedula);
+
 
             return ResponseEntity.ok(authResponse);
         } catch (AuthenticationException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales inválidas");
         }
+    }
+
+    private List<RolDto> determineUserRoles(Authentication authentication) {
+        // Obtener el nombre de usuario autenticado desde el Authentication principal
+        String username = authentication.getName();
+
+        // Buscar los roles del usuario según el nombre de usuario en la base de datos o donde se almacene
+        Usuarios usuario = usuariosRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+
+        // Devolver los roles del objeto encontrado
+        List<RolDto> roles = new ArrayList<>();
+        for (Roles rol : usuario.getRoles()) {
+            roles.add(new RolDto(rol.getIdRole(), rol.getName()));
+        }
+
+        return roles;
     }
 
     private String determineUserType(Authentication authentication) {
@@ -142,21 +166,6 @@ public class RestControllerAuth {
         }
     }
 
-    private List<RolDto> determineUserRoles(Authentication authentication) {
-        // Obtener el nombre de usuario autenticado desde el Authentication principal
-        String username = authentication.getName();
 
-        // Buscar los roles del usuario según el nombre de usuario en la base de datos o donde se almacene
-        Usuarios usuario = usuariosRepository.findByUsername(username)
-                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
-
-        // Devolver los roles del objeto encontrado
-        List<RolDto> roles = new ArrayList<>();
-        for (Roles rol : usuario.getRoles()) {
-            roles.add(new RolDto(rol.getIdRole(), rol.getName()));
-        }
-
-        return roles;
-    }
 
 }

@@ -3,11 +3,13 @@ package com.motorepuestos.melos.security;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import lombok.*;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+
 
 @Component
 public class JwtGenerador {
@@ -21,14 +23,16 @@ public class JwtGenerador {
 
         //Linea para generar el token
         String token = Jwts.builder() //Construimos un token JWT llamado token
+
                 .setSubject(username) //Aca establecemos el nombre de usuario que está iniciando sesión
                 .setIssuedAt(new Date()) //Establecemos la fecha de emisión del token en el momento actual
                 .setExpiration(expiracionToken) //Establecemos la fecha de caducidad del token
                 .signWith(SignatureAlgorithm.HS512, ConstantesSeguridad.JWT_FIRMA) /*Utilizamos este método para firmar
                 nuestro token y de esta manera evitar la manipulación o modificación de este*/
                 .compact(); //Este método finaliza la construcción del token y lo convierte en una cadena compacta
-        return token;
+       return token;
     }
+
 
     //Método para extraer un Username apartir de un token
     public String obtenerUsernameDeJwt(String token) {
