@@ -1,6 +1,11 @@
 package com.motorepuestos.melos.controller;
 
-import com.motorepuestos.melos.service.UserService;
+import com.motorepuestos.melos.data.entity.Cliente;
+import com.motorepuestos.melos.data.entity.Empleado;
+import com.motorepuestos.melos.data.model.ClienteDTO;
+import com.motorepuestos.melos.data.model.EmpleadoDTO;
+import com.motorepuestos.melos.data.model.RolDto;
+import com.motorepuestos.melos.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import com.motorepuestos.melos.data.model.ResetPasswordDTO;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -18,6 +25,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private RoleService roleService;
 
     /**
      * este endpoint se utiliza para cambiar de clave
@@ -55,5 +64,69 @@ public class UserController {
     public ResponseEntity<String> handleExceptions(Exception ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
     }
+
+
+    /**
+     *
+     * @return
+     */
+    /*
+    @GetMapping
+    @RequestMapping("/clientes")
+    public List<Cliente> getAllClientes() {
+        return userService.getAllClientes();
+    }
+
+    @GetMapping
+    @RequestMapping("/empleados")
+    public List<Empleado> getAllEmpleados() {
+        return userService.getAllEmpleados();
+    }*/
+
+    @GetMapping("/clientes")
+    public List<ClienteDTO> getAllClientes() {
+        return userService.getAllClientes().stream()
+                .map(this::convertToClienteDTO)
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/empleados")
+    public List<EmpleadoDTO> getAllEmpleados() {
+        return userService.getAllEmpleados().stream()
+                .map(this::convertToEmpleadoDTO)
+                .collect(Collectors.toList());
+    }
+
+
+    private ClienteDTO convertToClienteDTO(Cliente cliente) {
+        ClienteDTO dto = new ClienteDTO();
+        dto.setNombre(cliente.getNombre());
+        dto.setEmail(cliente.getUsername());
+        dto.setTelefono(cliente.getTelefono());
+        RolDto rdto = new RolDto();
+        dto.setRol(cliente.getRoles().stream().map(role -> {
+            rdto.setRoleNombre(role.getName());
+            rdto.setIdRole(role.getIdRole());
+            return rdto;
+        }).collect(Collectors.toList()));
+        return dto;
+    }
+
+
+    private EmpleadoDTO convertToEmpleadoDTO(Empleado empleado) {
+        EmpleadoDTO dto = new EmpleadoDTO();
+        dto.setNombre(empleado.getNombre());
+        dto.setEmail(empleado.getUsername());
+        dto.setTelefono(empleado.getTelefono());
+        dto.setCedula(empleado.getCedula());
+        RolDto rdto = new RolDto();
+        dto.setRol(empleado.getRoles().stream().map(role -> {
+            rdto.setRoleNombre(role.getName());
+            rdto.setIdRole(role.getIdRole());
+            return rdto;
+        }).collect(Collectors.toList()));
+        return dto;
+    }
+
 }
 
