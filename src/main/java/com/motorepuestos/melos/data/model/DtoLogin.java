@@ -1,4 +1,4 @@
-package com.motorepuestos.melos.dtos;
+package com.motorepuestos.melos.data.model;
 
 import lombok.Data;
 

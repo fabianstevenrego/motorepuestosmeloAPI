@@ -1,4 +1,4 @@
-package com.motorepuestos.melos.models;
+package com.motorepuestos.melos.data.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;

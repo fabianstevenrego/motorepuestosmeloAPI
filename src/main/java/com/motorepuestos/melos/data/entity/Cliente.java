@@ -1,10 +1,9 @@
-package com.motorepuestos.melos.models;
+package com.motorepuestos.melos.data.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import jakarta.persistence.*;
+
 
 @Data
 @AllArgsConstructor
@@ -12,5 +11,5 @@ import jakarta.persistence.*;
 @Table(name = "clientes")
 @PrimaryKeyJoinColumn(name = "id")
 public class Cliente extends Usuarios {
-    // Puedes agregar campos específicos para clientes aquí si los hay
+    // Puedes agregar campos especÃ­ficos para clientes aquÃ­ si los hay
 }

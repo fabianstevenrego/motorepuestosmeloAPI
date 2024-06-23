@@ -1,7 +1,7 @@
 package com.motorepuestos.melos.security;
-import com.motorepuestos.melos.models.Roles;
-import com.motorepuestos.melos.models.Usuarios;
-import com.motorepuestos.melos.repositories.IUsuariosRepository;
+import com.motorepuestos.melos.data.entity.Roles;
+import com.motorepuestos.melos.data.entity.Usuarios;
+import com.motorepuestos.melos.repository.IUsuariosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

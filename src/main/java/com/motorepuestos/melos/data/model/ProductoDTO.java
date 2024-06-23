@@ -2,6 +2,8 @@ package com.motorepuestos.melos.data.model;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class ProductoDTO {
     private Long id;
@@ -13,4 +15,6 @@ public class ProductoDTO {
     private Long marcaId;
     private Long tipoId;
     private int stock;
+
+
 }
