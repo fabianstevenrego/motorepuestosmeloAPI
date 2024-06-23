@@ -1,6 +1,5 @@
 package com.motorepuestos.melos.service.implementation;
 
-
 import com.motorepuestos.melos.data.converter.CategoriaConverter;
 import com.motorepuestos.melos.data.entity.Categoria;
 import com.motorepuestos.melos.data.model.CategoriaDTO;
@@ -57,5 +56,9 @@ public class CategoriaServiceImpl implements CategoriaService {
     @Override
     public void deleteCategoria(Long id) {
         categoriaRepository.deleteById(id);
+    }
+
+    public Categoria findById(Long id) {
+        return categoriaRepository.findById(id).orElse(null);
     }
 }

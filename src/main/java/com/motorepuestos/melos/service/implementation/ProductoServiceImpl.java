@@ -67,4 +67,20 @@ public class ProductoServiceImpl implements ProductoService {
     public void deleteProducto(Long id) {
         productoRepository.deleteById(id);
     }
+
+    @Override
+    public List<ProductoDTO> checkStockBelowLimit(int limit) {
+        List<Producto> productos = productoRepository.findByStockLessThan(limit);
+        return productos.stream()
+                .map(productoConverter::entityToDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ProductoDTO> getProductosByCategoria(Long categoriaId) {
+        List<Producto> productos = productoRepository.findByCategoriaId(categoriaId);
+        return productos.stream()
+                .map(productoConverter::entityToDto)
+                .collect(Collectors.toList());
+    }
 }

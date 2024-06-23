@@ -3,6 +3,8 @@ package com.motorepuestos.melos.data.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Entity
 @Table(name = "productos")
@@ -25,8 +27,9 @@ public class Producto {
     @Column(name = "precioventa")
     private double precioVenta;
 
-    @Column(name = "categoria_id")
-    private Long categoriaId;
+    @ManyToOne
+    @JoinColumn(name = "categoria_id", nullable = false)
+    private Categoria categoria;
 
     @Column(name = "marca_id")
     private Long marcaId;
@@ -37,4 +40,9 @@ public class Producto {
     @Column(name = "stock")
     private int stock;
 
+    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)
+    private List<PedidoProducto> pedidos;
+
+
+    // Otros atributos y métodos, getters y setters
 }

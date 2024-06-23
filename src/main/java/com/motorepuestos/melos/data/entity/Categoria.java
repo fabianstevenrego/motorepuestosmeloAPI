@@ -6,17 +6,17 @@ import java.util.List;
 
 @Data
 @Entity
+@Table(name = "categorias")
 public class Categoria {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "categoria_id", nullable = false)
     private Long id;
 
     @Column(name = "nombre", nullable = false)
-    private String name;
+    private String nombre;
 
-    @OneToMany(mappedBy = "categoriaId")
+    @OneToMany(mappedBy = "categoria")
     private List<Producto> productos;
-
 }

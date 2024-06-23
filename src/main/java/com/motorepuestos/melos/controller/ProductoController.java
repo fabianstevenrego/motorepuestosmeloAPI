@@ -10,8 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/productos")
-@CrossOrigin(origins = "http://127.0.0.1:5500")
-
+@CrossOrigin(origins = "http://127.0.0.1:5501")
 public class ProductoController {
 
     @Autowired
@@ -43,5 +42,15 @@ public class ProductoController {
     public ResponseEntity<Void> deleteProducto(@PathVariable Long id) {
         productoService.deleteProducto(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/stock-bajo/{limit}")
+    public List<ProductoDTO> getProductosStockBajo(@PathVariable int limit) {
+        return productoService.checkStockBelowLimit(limit);
+    }
+
+    @GetMapping("/list/{categoriaId}")
+    public List<ProductoDTO> getProductosByCategoria(@PathVariable Long categoriaId) {
+        return productoService.getProductosByCategoria(categoriaId);
     }
 }

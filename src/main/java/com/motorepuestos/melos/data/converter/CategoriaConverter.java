@@ -13,7 +13,7 @@ public class CategoriaConverter {
 
         CategoriaDTO dto = new CategoriaDTO();
         dto.setId(categoria.getId());
-        dto.setName(categoria.getName());
+        dto.setName(categoria.getNombre());
         return dto;
     }
 
@@ -24,7 +24,7 @@ public class CategoriaConverter {
 
         Categoria categoria = new Categoria();
         categoria.setId(dto.getId());
-        categoria.setName(dto.getName());
+        categoria.setNombre(dto.getName());
         return categoria;
     }
 }

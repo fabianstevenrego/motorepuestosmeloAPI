@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/categorias")
+@CrossOrigin(origins = "http://127.0.0.1:5501")
 public class CategoriaController {
 
     @Autowired
