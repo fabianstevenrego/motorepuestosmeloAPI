@@ -1,5 +1,6 @@
 package com.motorepuestos.melos.service;
 
+import com.motorepuestos.melos.data.entity.Categoria;
 import com.motorepuestos.melos.data.model.CategoriaDTO;
 
 import java.util.List;
@@ -10,4 +11,6 @@ public interface CategoriaService {
     CategoriaDTO createCategoria(CategoriaDTO categoriaDTO);
     CategoriaDTO updateCategoria(Long id, CategoriaDTO categoriaDTO);
     void deleteCategoria(Long id);
+    Categoria findById(Long id);
+
 }

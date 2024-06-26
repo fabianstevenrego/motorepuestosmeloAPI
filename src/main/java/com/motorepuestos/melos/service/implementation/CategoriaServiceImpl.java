@@ -58,7 +58,8 @@ public class CategoriaServiceImpl implements CategoriaService {
         categoriaRepository.deleteById(id);
     }
 
+    @Override
     public Categoria findById(Long id) {
-        return categoriaRepository.findById(id).orElse(null);
+        return categoriaRepository.findById(id).orElseThrow(() -> new RuntimeException("Categoria not found"));
     }
 }

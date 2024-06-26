@@ -1,9 +1,13 @@
 package com.motorepuestos.melos.data.converter;
 
 import com.motorepuestos.melos.data.entity.Categoria;
+import com.motorepuestos.melos.data.entity.Marca;
 import com.motorepuestos.melos.data.entity.Producto;
+import com.motorepuestos.melos.data.entity.Tipo;
 import com.motorepuestos.melos.data.model.ProductoDTO;
-import com.motorepuestos.melos.service.implementation.CategoriaServiceImpl;
+import com.motorepuestos.melos.service.CategoriaService;
+import com.motorepuestos.melos.service.MarcaService;
+import com.motorepuestos.melos.service.TipoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +15,13 @@ import org.springframework.stereotype.Component;
 public class ProductoConverter {
 
     @Autowired
-    private CategoriaServiceImpl categoriaService;
+    private CategoriaService categoriaService;
+
+    @Autowired
+    private MarcaService marcaService;
+
+    @Autowired
+    private TipoService tipoService;
 
     public ProductoDTO entityToDto(Producto producto) {
         if (producto == null) {
@@ -24,10 +34,13 @@ public class ProductoConverter {
         dto.setDescripcion(producto.getDescripcion());
         dto.setPrecioCosto(producto.getPrecioCosto());
         dto.setPrecioVenta(producto.getPrecioVenta());
-        dto.setCategoriaId(producto.getCategoria().getId()); // Cambiado a producto.getCategoria().getId()
-        dto.setMarcaId(producto.getMarcaId());
-        dto.setTipoId(producto.getTipoId());
+        dto.setCategoriaId(producto.getCategoria().getId());
+        dto.setMarcaId(producto.getMarca().getId());
+        dto.setTipoId(producto.getTipo().getId());
         dto.setStock(producto.getStock());
+        dto.setCategoria(producto.getCategoria().getNombre());
+        dto.setMarca(producto.getMarca().getNombre());
+        dto.setTipo(producto.getTipo().getNombre());
         return dto;
     }
 
@@ -44,10 +57,14 @@ public class ProductoConverter {
         producto.setPrecioVenta(dto.getPrecioVenta());
 
         Categoria categoria = categoriaService.findById(dto.getCategoriaId());
-        producto.setCategoria(categoria); // Asignar la entidad Categoria en lugar de solo el ID
+        producto.setCategoria(categoria);
 
-        producto.setMarcaId(dto.getMarcaId());
-        producto.setTipoId(dto.getTipoId());
+        Marca marca = marcaService.findById(dto.getMarcaId());
+        producto.setMarca(marca);
+
+        Tipo tipo = tipoService.findById(dto.getTipoId());
+        producto.setTipo(tipo);
+
         producto.setStock(dto.getStock());
         return producto;
     }

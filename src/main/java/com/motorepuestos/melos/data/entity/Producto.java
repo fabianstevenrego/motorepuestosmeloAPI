@@ -31,11 +31,14 @@ public class Producto {
     @JoinColumn(name = "categoria_id", nullable = false)
     private Categoria categoria;
 
-    @Column(name = "marca_id")
-    private Long marcaId;
+    @ManyToOne
+    @JoinColumn(name = "tipo_id", nullable = false)
+    private Tipo tipo;
 
-    @Column(name = "tipo_id")
-    private Long tipoId;
+    @ManyToOne
+    @JoinColumn(name = "marca_id", nullable = false)
+    private Marca marca;
+
 
     @Column(name = "stock")
     private int stock;
