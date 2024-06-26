@@ -3,7 +3,7 @@ package com.motorepuestos.melos.controller;
 import com.motorepuestos.melos.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+@CrossOrigin(origins = "http://127.0.0.1:5502")
 @RestController
 @RequestMapping("/api/email")
 public class EmailController {

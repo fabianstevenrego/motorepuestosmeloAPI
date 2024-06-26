@@ -7,10 +7,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin(origins = "http://127.0.0.1:5502")
 @RestController
 @RequestMapping("/api/pedidos")
-@CrossOrigin(origins = "http://127.0.0.1:5500")
 public class PedidoController {
 
     @Autowired

@@ -7,4 +7,5 @@ import lombok.Data;
 public class ProductoVentaModel {
     private Long productoId;
     private int cantidad;
+    private String Descripcion;
 }

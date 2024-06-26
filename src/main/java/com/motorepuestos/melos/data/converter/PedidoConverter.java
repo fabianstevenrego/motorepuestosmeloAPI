@@ -44,6 +44,9 @@ public class PedidoConverter {
                     PedidoProductoModel pedidoProductoModel = new PedidoProductoModel();
                     pedidoProductoModel.setProductoId(pedidoProducto.getProducto().getId());
                     pedidoProductoModel.setCantidad(pedidoProducto.getCantidad());
+                    pedidoProductoModel.setNombreProducto(pedidoProducto.getProducto().getDescripcion());
+                    pedidoProductoModel.setCodigoProducto(pedidoProducto.getProducto().getCodigo());
+                    pedidoProductoModel.setCostoCompra(pedidoProducto.getProducto().getPrecioCosto());
                     return pedidoProductoModel;
                 }).collect(Collectors.toList()));
         return PedidoDTO;

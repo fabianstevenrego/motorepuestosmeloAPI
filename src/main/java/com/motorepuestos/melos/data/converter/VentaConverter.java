@@ -46,6 +46,7 @@ public class VentaConverter {
                     ProductoVentaModel productoVentaModel = new ProductoVentaModel();
                     productoVentaModel.setProductoId(productoVenta.getProducto().getId());
                     productoVentaModel.setCantidad(productoVenta.getCantidad());
+                    productoVentaModel.setDescripcion(productoVenta.getProducto().getDescripcion()); // Aquí asignamos la descripción del producto
                     return productoVentaModel;
                 }).collect(Collectors.toList()));
         return ventaDTO;
